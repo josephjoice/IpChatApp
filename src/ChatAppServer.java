@@ -36,7 +36,7 @@ public class ChatAppServer extends Thread {
     {
       //  e.printStackTrace();
     }
-    }
+    
     public static void main(String args[])
     {
         try
