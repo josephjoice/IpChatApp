@@ -35,7 +35,7 @@ public class ChatAppServer extends Thread {
         }catch (java.io.IOException e)
     {
       //  e.printStackTrace();
-    }
+    }}
     
     public static void main(String args[])
     {
@@ -43,8 +43,7 @@ public class ChatAppServer extends Thread {
         {
             Thread chatAppServer=new ChatAppServer(12345);
             chatAppServer.start();
-            Thread chatAppClient =new ChatAppClient(12346);
-            chatAppClient.start();
+
 
         }
         catch (Exception e)
