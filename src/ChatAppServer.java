@@ -1,4 +1,6 @@
+import java.io.BufferedReader;
 import java.io.DataInputStream;
+import java.io.InputStreamReader;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -7,7 +9,10 @@ import java.net.Socket;
  */
 public class ChatAppServer extends Thread {
     ServerSocket serverSocket;
-
+    static String name;
+    static int num;
+    static String[] formedConnections;
+    static Socket[] clients;
     public ChatAppServer(int port) {
         try {
             serverSocket = new ServerSocket(port);
@@ -37,15 +42,42 @@ public class ChatAppServer extends Thread {
     }
 
     public static void main(String args[]) {
+        InputStreamReader read=new InputStreamReader(System.in);
+        BufferedReader in=new BufferedReader(read);
         try {
-            Thread chatAppClient = new ChatAppClient(12345);
-            chatAppClient.start();
+            System.out.print("Enter Your Name : ");
+            name=in.readLine();
+            System.out.print("Number of People you want to send your message : ");
+            num=Integer.parseInt(in.readLine());
+            clients=new Socket[num];
+            formedConnections=new String[num];
+
+            for(int i=0;i<num;i++)
+            {
+                System.out.print("Enter computer name "+i+": ");
+                String serverName=in.readLine();
+                formedConnections[i]=serverName;
+
+                try {
+                    clients[i] = new Socket(serverName, 12345);
+                    formedConnections[i]="";
+                }
+                catch(Exception e)
+                {
+
+                }
+
+            }
             Thread chatAppServer = new ChatAppServer(12345);
             chatAppServer.start();
 
+            Thread chatAppClient = new ChatAppClient(12345);
+            chatAppClient.start();
+
+
 
         } catch (Exception e) {
-            //  e.printStackTrace();
+              e.printStackTrace();
         }
     }
 }
