@@ -31,7 +31,7 @@ public class ChatAppClient extends Thread {
             } catch (Exception e)
 
             {
-                e.printStackTrace();
+              //  e.printStackTrace();
             }
         }
     }

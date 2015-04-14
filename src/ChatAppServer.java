@@ -34,22 +34,22 @@ public class ChatAppServer extends Thread {
             }
         }catch (java.io.IOException e)
     {
-        e.printStackTrace();
+      //  e.printStackTrace();
     }
     }
     public static void main(String args[])
     {
         try
         {
-            Thread chatAppServer=new ChatAppServer(Integer.parseInt(args[0]));
+            Thread chatAppServer=new ChatAppServer(12345);
             chatAppServer.start();
-            Thread chatAppClient =new ChatAppClient(Integer.parseInt(args[1]));
+            Thread chatAppClient =new ChatAppClient(12346);
             chatAppClient.start();
 
         }
         catch (Exception e)
         {
-            e.printStackTrace();
+          //  e.printStackTrace();
         }
     }
 }
