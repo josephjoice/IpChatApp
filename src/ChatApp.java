@@ -1,7 +1,7 @@
 import java.net.ServerSocket;
 
 /**
- * Created by joseph on 13/4/15.
+ * Created by nithin on 13/4/15.
  */
 public class ChatApp {
     ServerSocket serverSocket;
