@@ -58,14 +58,7 @@ public class ChatAppServer extends Thread {
                 String serverName=in.readLine();
                 formedConnections[i]=serverName;
 
-                try {
-                    clients[i] = new Socket(serverName, 12345);
-                    formedConnections[i]="";
-                }
-                catch(Exception e)
-                {
 
-                }
 
             }
             Thread chatAppServer = new ChatAppServer(12345);

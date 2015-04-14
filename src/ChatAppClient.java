@@ -26,11 +26,9 @@ public class ChatAppClient extends Thread {
             sendData = in.readLine();
                 for(int i=0;i<ChatAppServer.num;i++) {
                     try {
-                        if(!ChatAppServer.formedConnections[i].equals(""))
-                        {
                             ChatAppServer.clients[i] = new Socket(ChatAppServer.formedConnections[i], 12345);
 
-                        }
+
                         OutputStream outToServer = ChatAppServer.clients[i].getOutputStream();
                         DataOutputStream out = new DataOutputStream(outToServer);
                         out.writeUTF(ChatAppServer.name + ":" + sendData);
