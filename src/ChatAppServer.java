@@ -27,16 +27,19 @@ public class ChatAppServer extends Thread {
                 DataInputStream in = new DataInputStream(server.getInputStream());
                 System.out.println(in.readUTF());
                 server.close();
+                Thread.sleep(1);
 
 
             } catch (Exception e) {
-                e.printStackTrace();
+                //e.printStackTrace();
             }
         }
     }
 
     public static void main(String args[]) {
         try {
+            Thread chatAppClient = new ChatAppClient(12345);
+            chatAppClient.start();
             Thread chatAppServer = new ChatAppServer(12345);
             chatAppServer.start();
 

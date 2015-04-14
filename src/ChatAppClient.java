@@ -15,7 +15,7 @@ public class ChatAppClient extends Thread {
     }
 
 
-    public static  void main(String args[])
+    public void run()
     {
         String sendData;
         InputStreamReader read=new InputStreamReader(System.in);
@@ -24,12 +24,12 @@ public class ChatAppClient extends Thread {
             try {
             sendData = in.readLine();
 
-                Socket client = new Socket("10.2.3.112",12345);
-                OutputStream outToServer = client.getOutputStream();
-                DataOutputStream out = new DataOutputStream(outToServer);
-
-
-                out.writeUTF(sendData);
+                Socket[] clients= {new Socket("10.2.3.116",12345),new Socket("10.2.3.116",12345)};
+                for(int i=0;i<2;i++) {
+                    OutputStream outToServer = clients[i].getOutputStream();
+                    DataOutputStream out = new DataOutputStream(outToServer);
+                    out.writeUTF(sendData);
+                }
             } catch (Exception e)
 
             {
