@@ -22,11 +22,13 @@ public class ChatAppClient extends Thread {
         BufferedReader in=new BufferedReader(read);
         while(true) {
             try {
-                Socket client = new Socket("10.2.3.116",12345);
+            sendData = in.readLine();
+
+                Socket client = new Socket("10.2.3.112",12345);
                 OutputStream outToServer = client.getOutputStream();
                 DataOutputStream out = new DataOutputStream(outToServer);
 
-                sendData = in.readLine();
+
                 out.writeUTF(sendData);
             } catch (Exception e)
 

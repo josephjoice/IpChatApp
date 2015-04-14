@@ -7,48 +7,42 @@ import java.net.Socket;
  */
 public class ChatAppServer extends Thread {
     ServerSocket serverSocket;
-    public ChatAppServer(int port)
-    {
-        try
-        {
-        serverSocket = new ServerSocket(port);
-        serverSocket.setSoTimeout(10000);
-     }catch(Exception e)
-        {
-        System.out.println("Error in setting up server");
+
+    public ChatAppServer(int port) {
+        try {
+            serverSocket = new ServerSocket(port);
+            serverSocket.setSoTimeout(10000);
+        } catch (Exception e) {
+            System.out.println("Error in setting up server");
         }
 
     }
-    public void run()
-    {   try
-        {
 
-        while(true)
-        {
-            Socket server=serverSocket.accept();
+    public void run() {
 
-                DataInputStream in=new DataInputStream(server.getInputStream());
+        while (true) {
+            try {
+                Socket server = serverSocket.accept();
+
+                DataInputStream in = new DataInputStream(server.getInputStream());
                 System.out.println(in.readUTF());
-            server.close();
+                server.close();
 
+
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-        }catch (java.io.IOException e)
-    {
-      //  e.printStackTrace();
-    }}
-    
-    public static void main(String args[])
-    {
-        try
-        {
-            Thread chatAppServer=new ChatAppServer(12345);
+        }
+    }
+
+    public static void main(String args[]) {
+        try {
+            Thread chatAppServer = new ChatAppServer(12345);
             chatAppServer.start();
 
 
-        }
-        catch (Exception e)
-        {
-          //  e.printStackTrace();
+        } catch (Exception e) {
+            //  e.printStackTrace();
         }
     }
 }
