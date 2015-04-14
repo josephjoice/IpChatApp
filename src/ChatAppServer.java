@@ -16,7 +16,7 @@ public class ChatAppServer extends Thread {
     public ChatAppServer(int port) {
         try {
             serverSocket = new ServerSocket(port);
-            serverSocket.setSoTimeout(10000);
+          //  serverSocket.setSoTimeout(10000);
         } catch (Exception e) {
             System.out.println("Error in setting up server");
         }
@@ -77,7 +77,7 @@ public class ChatAppServer extends Thread {
 
 
         } catch (Exception e) {
-            //  e.printStackTrace();
+              e.printStackTrace();
         }
     }
 }
